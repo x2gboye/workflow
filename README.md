@@ -155,9 +155,9 @@ The ViewModels
 
 
 
-> ###ListViewModel
+###ListViewModel
 
-> ```js
+```js
 - key: observable //local storage key
 - name: observable //user-given name
 - isSelected: observable //currently being worked on
@@ -171,9 +171,9 @@ The ViewModels
 - deleteWorkflow
 ```  
 
-> ###StepViewModel
+###StepViewModel
 
-> ```js
+```js
  - isStart: observable //bool starting step, only and exactly 1 per workflow
  - id: observable
  - name: observable
@@ -196,9 +196,9 @@ The ViewModels
  - setIsStart(data) //sets step isStart bool to true, sets all other steps isStart to false
 ```  
 
-> ###ResultViewModel
+###ResultViewModel
 
-> ```js
+```js
  - id: observable
  - sourceId: observable //id of step that's the source of the connection
  - targetId: observable //id of step that's the target of the connection
@@ -220,9 +220,9 @@ The ViewModels
  - saveOrCancelEdit
 ```  
 
-> ###TemplateViewModel
+###TemplateViewModel
 
-> ```js
+```js
  - id: observable //from demo.data.js
  - name: observable //from demo.data.js
  - isSelected: observable //set to true if the id matches template id of the selected step passed down from the parent workflowViewModel.
