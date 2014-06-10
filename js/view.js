@@ -30,7 +30,7 @@ $(function() {
 		}
 	});
 	
-	$('a').click(function(event) {
+	$('a:not(.realLink)').bind("click dblclick", function(event) {
 		event.preventDefault();
 	});
 	
