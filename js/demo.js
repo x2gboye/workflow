@@ -23,15 +23,15 @@
 		if (Modernizr.localstorage) {
 			// Add Saved data to workflow list
 		    for (var i = 0; i < localStorage.length; i++) {
-		        var key = localStorage.key(i),
-					value = JSON.parse(localStorage[key]),
-                    listViewModel = new ListViewModel(workflowViewModel, key, value.name);
+		        var key = localStorage.key(i);
 
-		        workflowViewModel.allWorkflows.push(listViewModel);
+				if(key.substr(0, key.indexOf(".")) === "workflow") {
+					var value = JSON.parse(localStorage[key]),
+						listViewModel = new ListViewModel(workflowViewModel, key, value.name);	
+					workflowViewModel.allWorkflows.push(listViewModel);
+				}
 		    }
 		}
-
-
 	    // Initialize chart view model
 		workflowViewModel.initialize();
 

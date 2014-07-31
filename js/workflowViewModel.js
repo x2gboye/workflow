@@ -427,15 +427,16 @@ function WorkflowViewModel() {
     * Private method
     */
 	function getData(data) {
+		var storage = getStorageKeys();
 		for (var i = 0; i < self.workflows().length; i++){
 			if(self.workflows()[i].isSelected() || self.isDirty()) {
 				self.clearData();
 			}
 		}			
 		
-		for (var i = 0; i < localStorage.length; i++){
-			if(localStorage.key(i) === data.key()) {
-				var workflow = JSON.parse(localStorage[localStorage.key(i)]);
+		for (var i = 0; i < storage.length; i++){
+			if(storage[i] === data.key()) {
+				var workflow = JSON.parse(localStorage[storage[i]]);
 				self.workflows()[i].isSelected(true);
 				$.cookie('selected_workflow', self.workflows()[i].key(), { expires: 365 });
 			}
@@ -484,7 +485,12 @@ function WorkflowViewModel() {
 	function deleteAll() {
 		self.clearData();
 		self.workflows.removeAll();
-		localStorage.clear();
+		var storage = getStorageKeys();		
+		
+		for (var i = 0; i < storage.length; i++){
+			localStorage.removeItem(storage[i]);
+		}
+		
 		$.removeCookie('selected_workflow');
 		$('#workflowBtn .badge').effect( "highlight", {color:"#ff0000"}, 1500);
 	};
@@ -569,6 +575,20 @@ function WorkflowViewModel() {
 		return exists;
 	}
 	
+	/**
+    * Private method, returns array of 'workflow' storage keys
+    */	
+	function getStorageKeys() {
+		var keys = [];		
+		
+		for (var key in localStorage){
+			if(key.substr(0, key.indexOf(".")) === "workflow") {
+				keys.push(key);
+			}
+		}
+		
+		return keys;
+	}
 	
 	// bind jsPlumb EVENTS--------------------------------------------------------------------------
 	// ---------------------------------------------------------------------------------------------
@@ -617,9 +637,11 @@ function WorkflowViewModel() {
 		initContext();
 				
 		//Check for an active workflow from a previous session
-		var active = $.cookie('selected_workflow');
-		for (var i = 0; i < localStorage.length; i++){
-			if(localStorage.key(i) === active) {
+		var active = $.cookie('selected_workflow'),
+			storage = getStorageKeys();
+		
+		for (var i = 0; i < storage.length; i++){
+			if(storage[i] === active) {
 				var workflow = self.workflows()[i];
 			}
 		}
