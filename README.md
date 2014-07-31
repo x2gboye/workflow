@@ -3,7 +3,7 @@ Workflow
 
 Workflow provides a way to create visual flowcharts of workflow data.  It is a single page application built with HTML, CSS, and JavaScript.
 
-> [View Demo](http://krkdemo.imprezzio.com/workflow/)
+> [View Demo](http://workflow.webdemo.imprezzio.com)
 
 Dependencies
 -----------
@@ -63,7 +63,7 @@ Workflow Anatomy
 
 Here's a simple workflow example:
 
-![Workflow Example](http://krkdemo.imprezzio.com/workflow/img/example.png)  
+![Workflow Example](http://workflow.webdemo.imprezzio.com/img/example.png)  
 
 This would get saved as:
 ```json
@@ -106,7 +106,7 @@ You can see, here we have 2 steps and 1 result.  The "result" represents a jsPlu
 
 **Some terms to note:**
 
-![Workflow Example](http://krkdemo.imprezzio.com/workflow/img/example2.png) 
+![Workflow Example](http://workflow.webdemo.imprezzio.com/img/example2.png) 
 
 ---
 
